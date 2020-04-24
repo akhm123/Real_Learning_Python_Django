@@ -8,8 +8,8 @@
 <!--===============================================================================================-->
 {% load static %}
 {%include 'header.html' %}
-	<!-- {% block content %}
-	{%  endblock content %}-->
+	{% block content %}
+	{% endblock content %}
  <link href="{% static 'adminhome/css/bootstrap.min.css'%}" rel="stylesheet">
 
 	<link rel="stylesheet" href="{% static 'adminhome/css/font-awesome.min.css'%}">
@@ -17,12 +17,12 @@
 
 
 	<link href="{% static 'adminhome/css/animate.min.css'%}" rel="stylesheet"> 
-	<link href="{% static 'adminhome/css/style.css'%}" rel="stylesheet" />		
+	<!-- <link href="{% static 'adminhome/css/style.css'%}" rel="stylesheet" />	 -->	
 	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico'%}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}"> -->
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css'%}">
 <!--===============================================================================================-->
@@ -38,50 +38,43 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'adminhome/css/util.css'%}">
 	<link rel="stylesheet" type="text/css" href="{% static 'adminhome/css/root.css'%}">
-<!--===============================================================================================-->
 </head>
 <body>
 	
 	
-	<!-- <div class="limiter"> -->
+	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url('{% static 'adminhome/images/bg-01.jpg'%}');">
 					<span class="login100-form-title-1">
-						  Dashboard
+						View Topic
 					</span>
+
 				</div>
 
 				
-				<div class="container-login100-form-btn">
-<table class="table table-borderless">
-	<tr>
-		<td>
-							<form action="../course/">
-<input type="submit" value="Add Course" class="login100-form-btn">
-</form>
-</td><td>
-	<form action="../courseupdate/" >
-<input type="submit" value="Add Course Content" class="login100-form-btn">
-</form>
-</td></tr><tr>
-	<td>
-	<form action="../addQuestion/" >
-<input type="submit" value="Add Question for Quiz" class="login100-form-btn">
-</form></td><td>
-<form action="../viewcourse/" >
-<input type="submit" value="Manage Course" class="login100-form-btn">
-</form></td></tr></table>
-<!-- <form action="../addQuestion/" class="login100-form validate-form">
-<input type="submit" value="Add Question for Quiz" class="login100-form-btn">
-</form>
-		 -->				
-					</div>
-			</div>
+<form class="login100-form validate-form" action="../viewselectedtopic/" method="post">{% csrf_token %}
+<span class="focus-input100"></span>
+<div class="wrap-input100 validate-input m-b-26" data-validate="coursename is required">
+	<span class="label-input100">select topic</span>
+			 <select  class="input100" id="topicname" name="topicname">
+			{% for item in  item %}
+			    <option value="{{ item.topicname }}">{{ item.topicname }}</option>
+			{% endfor %}
+			</select>	
+		<span class="focus-input100"></span>
+</div>
+<input type="submit" value="View Topic Content" class="login100-form-btn" >
+<input type="submit" value="Delete Topic Content" formaction="../deletetopic/" class="login100-form-btn" style="margin-top:10px">				
+
+	</form>
 		</div>
-	<!-- </div> -->
-	
-
-
+		</div>
+	</div>
 </body>
+	<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+</script>
 </html>
